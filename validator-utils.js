@@ -18,8 +18,7 @@ function validateForm(form) {
         if (input[1].type !== 'hidden') {
             if(input[1].hasAttribute('required') && input[1].value.length < 3) {
                 errors_count ++;
-            }
-            
+            }            
         }
     });
 
