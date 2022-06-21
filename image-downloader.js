@@ -16,7 +16,7 @@ function forceDownload(url, fileName){
 }
 for(let i = 1; i <= 53; i++){
     if (i < 10) {
-        forceDownload('https://player.slideplayer.com.br/76/12688319/slides/slide_0' + i + '.jpg', 'slide_0' + i + '.jpg');
+        forceDownload('https://player.slideplayer.com.br/76/12688319/slides/slide_' + i + '.jpg', 'slide_0' + i + '.jpg');
     } else {
         forceDownload('https://player.slideplayer.com.br/76/12688319/slides/slide_' + i + '.jpg', 'slide_' + i + '.jpg');
     }
