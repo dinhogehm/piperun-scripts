@@ -1,5 +1,6 @@
 // METODO PARA COLETAR DADOS DO FORMULARIO E ENVIAR PARA O PIPERUN, COM DADOS DE UTM.
 var sessionStart = new Object();
+var hashEtapaFunil = "xxxxxxxxxxxxxxxxxxxxxxxxxx";
 
 // URL de referencia;
 // https://crmpiperun.com?utm_source=google&utm_medium=cpc&utm_campaign=manutencao-recorrente
@@ -33,7 +34,7 @@ window.onload = function () {
 
 function enviarDados() {
     // ENDPOINT
-    let endpoint = "https://app.pipe.run/webservice/integradorJson?hash=4c7460ad-9eda-444d-9183-c8cb801048a5"
+    let endpoint = "https://app.pipe.run/webservice/integradorJson?hash=" + hashEtapaFunil
 
     let dataHora = formatDate(new Date());
 
