@@ -7,6 +7,15 @@ o script JS do integração não consegue rodar antes do redirect e acaba não r
     event.stopPropagation();
 */
 
+<script>
+
+var formNovo = document.getElementsByTagName('form')[0];
+var listener = formNovo.addEventListener('submit', function(event) { 
+    event.preventDefault(); 
+    event.stopPropagation();
+    enviarDados(); 
+});
+
 function setCookie(name, value, exdays = 1) {
     var expires;
     var date;
@@ -72,9 +81,6 @@ function setSessionStart(sessionStartName, arTerms = ['gclid', 'utm_source', 'ut
 var sessionStartCookie = new Object();
 var sessionStart = new Object();
 
-// URL de referencia;
-// https://crmpiperun.com?utm_source=google&utm_medium=cpc&utm_campaign=manutencao-recorrente
-
 function getParameterByName(name) {
     name = name.replace(/[[]/, "[").replace(/[]]/, "]");
     var regex = new RegExp("[?&]" + name + "=([^&#]*)"),
@@ -96,16 +102,6 @@ function formatDate(date) {
         date.getFullYear() + ' ' +
         date.getHours() + ':' + date.getMinutes();
 }
-
-// Adiciona um event listener para o evento de submit no formulário
-document.addEventListener('DOMContentLoaded', function() {
-    var formNovo = document.getElementsByTagName('form')[0];
-    formNovo.addEventListener('submit', function(event) { 
-        event.preventDefault(); 
-        event.stopPropagation();
-        enviarDados();
-    });
-});
 
 function enviarDados() {
     // ENDPOINT
@@ -192,7 +188,6 @@ function enviarDados() {
         }
     });
 
-
     // DATA
     let dataToSend = {
         "rules": rules,
@@ -204,7 +199,10 @@ function enviarDados() {
         headers: {
             'Content-Type': 'application/json',
         }, body: JSON.stringify(dataToSend)
-    }).then(response => {
-        document.getElementsByTagName('form')[0].submit();
-    });
+    }).then( response => {
+        formNovo.removeEventListener('submit', listener, false);
+        formNovo.submit();
+    })
 }
+
+</script>
